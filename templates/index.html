@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificador de Senhas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="container">
+    <h1>🔐 Verificador de Senha</h1>
+    <p class="subtitle">
+      Avalie a força da sua senha e verifique vazamentos conhecidos
+    </p>
+
+    <form method="POST">
+      <input type="password" name="password" placeholder="Digite sua senha" required>
+      <button type="submit">Analisar Senha</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+      <div class="strength
+        {% if 'Fraca' in result %}fraca
+        {% elif 'Média' in result %}media
+        {% else %}forte{% endif %}">
+        {{ result }}
+      </div>
+      <div class="leak">{{ leak }}</div>
+    </div>
+    {% endif %}
+
+    <div class="footer">
+      Projeto educacional • Cybersecurity
+    </div>
+  </div>
+
+</body>
+</html>
